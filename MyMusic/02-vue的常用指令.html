@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div.a {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+    }
+
+    div.active {
+      background-color: green;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!-- v-xxx -->
+    <!-- 对值的操作 -->
+    <!-- v-text   innerText
+       v-html  innerHTML
+    -->
+    <!-- v-if  元素的创建和销毁
+        v-show 元素的显示和隐藏 style
+    -->
+    <h2 v-text='msg'></h2>
+    <h2 v-html='msg'></h2>
+    <p v-if='isShow'>指令系统</p>
+    <p v-else>yuhao</p>
+    <p v-show='isShow'>wanghaoqi</p>
+    <div @click='handleClick' class='a' v-bind:class='{active:isActive,b:isActive}' v-bind:title='title'>
+    </div>
+    <!-- <img src="" :alt="title"> -->
+    <a href="" :aaa='title'>百度一下</a>
+    <!-- v-for 循环遍历 -->
+    <ul>
+      <!-- 一定要记住：当使用v-for 一定要绑定:key -->
+      <li v-for='(item,i) in menuList' :key='item.id'>
+        <p>{{item.id}}-{{item.name}}-{{item.price}}</p>
+      </li>
+    </ul>
+    <ul>
+      <li v-for='(value,key) in person'>
+        {{key}}--{{value}}
+      </li>
+    </ul>
+  </div>
+  <script src="./node_modules/vue/dist/vue.js"></script>
+  <script>
+    // v-bind:title 可以简写成 :title
+    // v-on:click 可以简写成@click
+    new Vue({
+      el: "#app",
+      data() {
+        return {
+          msg: "<span>hello world</span>",
+          isShow: false,
+          title: '哈哈哈哈哈哈哈',
+          isActive: true,
+          menuList:[
+            {id:1,name:"测试",price:10000},
+            {id:2,name:"后端",price:12000},
+            {id:3,name:"前端",price:15000},
+          ],
+          person:{
+            name:"yuhao",
+            age:36
+          }
+        }
+      },
+      methods: {
+        handleClick() {
+            this.isActive = !this.isActive;
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

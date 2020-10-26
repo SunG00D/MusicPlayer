@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>侦听器watch</title>
+</head>
+
+<body>
+  <div id='app'>
+    <input type="text" v-model='msg'>
+    <h3>{{msg}}</h3>
+    <h3>{{stus[0].name}}</h3>
+    <button @click='stus[0].name="wanghaoqi"'>改变</button>
+  </div>
+  <script src="./node_modules/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        msg: '',
+        stus:[{name:'yuhao'}]
+      },
+      watch: {
+        'msg': function (newV, oldV) {
+          if(newV === '100'){
+            alert('超出了');
+          }
+
+        },
+        //基本的数据类型直接监听 复杂数据类型深度监听
+        stus:{
+          deep:true,
+          handler:function(newV){
+            console.log(newV);
+            console.log(newV[0].name);
+            
+          }
+        }
+      }
+
+    })
+  </script>
+</body>
+
+</html>

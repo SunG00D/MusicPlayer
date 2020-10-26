@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id='app'>
+    <!-- 3.使用子组件 -->
+      <App></App>
+      
+  </div>
+  <script src='./node_modules/vue/dist/vue.js'></script>
+  <script>
+    // 全局组件的创建
+    // 只要生命了全局组件 可以在任意组件中所使用的
+    Vue.component('OneChild',{
+      data() {
+        return {
+
+        }
+      },
+      template:`
+        <div>我是孩子组件</div>
+      `
+    })
+
+    // 打油诗: 建子 挂子 用子
+    // 1、局部组件的创建 建子
+    let App = {
+      data() {
+        return {
+          msg:'组件的使用'
+        }
+      },
+      template:`
+        <div>
+          <h2>{{msg}}</h2>
+          <OneChild></OneChild>
+          <one-child></one-child>
+        </div>
+        
+      `,
+      components:{
+        
+      }
+    }
+
+
+    let vm = new Vue({
+      el:'#app',
+      data(){
+        return {
+
+        }
+      },
+      // 2.挂载子组件
+      components:{
+        App
+      }
+      
+    })
+  </script>
+  
+</body>
+</html>

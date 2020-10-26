@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 双向数据绑定 -->
+    <input type="text" v-model='msg3'><!-- .lazy会光标离开以后再做改变 -->
+    <h3>{{msg3}}</h3>
+    <!-- 双向数据绑定 -->
+    <input type="text" v-model.lazy='msg'><!-- .lazy会光标离开以后再做改变 -->
+    <h3>{{msg}}</h3>
+    <!-- v-model 其实是v-bind:value @input的一个体现  语法糖 甜甜的感觉 -->
+    <!-- 只会体现在UI控件中，只能应用在有value属性中的标签 v-model的原理实现 -->
+    <!-- input  textarea -->
+    <input type="text" :value='msg2' @input='valueChange'><!-- 写了方法以后才会有双向绑定 -->
+    <h3>{{msg2}}</h3>
+  </div>
+  <script src='./node_modules/vue/dist/vue.js'></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          msg: 'yuhao',
+          msg2: 'wanghaoqi',
+          msg3: 'abcd'
+        }
+      },
+      methods: {
+        valueChange(e){
+          this.msg2 = e.target.value+"GBA";
+          
+        }
+      },
+    })
+  </script>
+
+</body>
+
+</html>

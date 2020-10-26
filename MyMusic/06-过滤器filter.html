@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>过滤器filter</title>
+</head>
+
+<body>
+  <div id='app'>
+    <h3>{{price | salePrice('¥')}}</h3>
+    <h3>{{price | salePrice('$')}}</h3>
+    <h2>{{msg | reverseMsg}}</h2> 
+  </div>
+  <script src="./node_modules/vue/dist/vue.js"></script>
+  <script>
+    // 全局过滤器
+    Vue.filter('reverseMsg',(val)=>{
+      return val.split('').reverse().join('');
+    })
+
+    // 对数据添油加醋
+    new Vue({
+      el: '#app',
+      data: {
+        price:10,
+        msg:"yuhao"
+      },
+      methods: {
+
+      },
+      // 局部过滤器
+      filters: {
+        salePrice: function(value,a) {
+          return a + value;
+        }
+      }
+
+
+    })
+  </script>
+</body>
+
+</html>

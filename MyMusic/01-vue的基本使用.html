@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id='app'>
+    <!-- 地的组成部分 -->
+    <h3>{{msg}}</h3>
+    <h4>{{msg2}}</h4>
+    <p>{{1===2 ? '真的': "假的"}}</p>
+    <h2>{{ {a:1} }}</h2>
+  </div>
+  <script src='./node_modules/vue/dist/vue.js'></script>
+  <script>
+    // 数据响应式
+
+    // 思想：Vue是M Model V View VM ViewModel框架       M Model  V View  C  Controler
+    // vm 地主
+    let vm = new Vue({
+      el:'#app', //一块地
+      // 默认记住 data是一个函数
+      data(){
+        // 数据属性
+        return {
+          msg:"yuhao",
+          msg2:'sed'//种子
+        }
+      }
+    })
+    console.log(vm.msg);
+    
+  
+  </script>
+  
+</body>
+</html>

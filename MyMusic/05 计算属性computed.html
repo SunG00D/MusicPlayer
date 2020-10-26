@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>计算属性computed</title>
+</head>
+
+<body>
+  <div id='app'>
+    {{reverseMsg}}
+    <!-- 不建议v-for和v-if一起使用 -->
+    <ul>
+      <li v-for='(num,i) in numbers' :key='i' v-if='num % 2 === 0'>
+        {{num}}
+      </li>
+    </ul>
+    <!-- 解决办法
+      1.过滤更高效
+      2.渲染更高效
+      3.可维护性更强
+    -->
+    <ul>
+      <li v-for='(num,i) in evenNumbers' :key='i'>
+        {{num}}
+      </li>
+    </ul>
+
+    <button @click='add'>添加</button>
+  </div>
+  <script src="./node_modules/vue/dist/vue.js"></script>
+  <script>
+    
+
+    new Vue({
+      el: '#app',
+      data: {
+        msg:"hello world",
+        numbers:[1,2,3,4,5]
+      },
+      methods: {
+       add(){
+         this.numbers.push(6);
+       }
+      },
+      computed: {
+        reverseMsg() {
+          // 相当于放在缓存中
+          return this.msg.split('').reverse().join(''); 
+        },
+        evenNumbers(){
+          return this.numbers.filter(num=>{
+            return num % 2 === 0
+          })
+        }
+      },
+      
+
+    })
+  </script>
+</body>
+
+</html>
